@@ -1,18 +1,18 @@
 #!/usr/bin/python3
-"""Creating & Distributing an archive to webServers"""
+"""Fabric script that creates and distributes an archive to your web servers"""
 
 import os
-import fabric.api import env, local, put, run
+from fabric.api import env, local, put, run
 from datetime import datetime
 from os.path import exists
 
-env.hosts = ['54.82.5.102', '3.94.103.18']
+env.hosts = ["54.226.54.247", "18.205.246.150"]
 env.user = "ubuntu"
 env.key = "~/.ssh/id_rsa"
 
 
 def do_pack():
-    """TGZ Archive from webStatic"""
+    """Create a .tgz archive from the web_static folder."""
     time_stamp = datetime.now().strftime("%Y%m%d%H%M%S")
     local("mkdir -p versions")
     archive_path = "versions/web_static_{}.tgz".format(time_stamp)
@@ -22,8 +22,9 @@ def do_pack():
     else:
         return None
 
+
 def do_deploy(archive_path):
-    """Deploying to webServers"""
+    """Distribute the archive to web servers and deploy it."""
     if not exists(archive_path):
         return False
     try:
@@ -42,8 +43,9 @@ def do_deploy(archive_path):
     except Exception:
         return False
 
+
 def deploy():
-    """Create & distribute an Archive to webServers"""
+    """Create and distribute an archive to web servers."""
     archive_path = do_pack()
     if not archive_path:
         return False
