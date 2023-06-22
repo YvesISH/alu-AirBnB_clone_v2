@@ -12,7 +12,7 @@ env.key = "~/.ssh/id_rsa"
 
 
 def do_pack():
-    """TGZ Archive"""
+    """TGZ Archive from webStatic"""
     time_stamp = datetime.now().strftime("%Y%m%d%H%M%S")
     local("mkdir -p versions")
     archive_path = "versions/web_static_{}.tgz".format(time_stamp)
@@ -23,7 +23,7 @@ def do_pack():
         return None
 
 def do_deploy(archive_path):
-    """Deploying"""
+    """Deploying to webServers"""
     if not exists(archive_path):
         return False
     try:
@@ -43,7 +43,7 @@ def do_deploy(archive_path):
         return False
 
 def deploy():
-    """Archive to webServers"""
+    """Create & distribute an Archive to webServers"""
     archive_path = do_pack()
     if not archive_path:
         return False
