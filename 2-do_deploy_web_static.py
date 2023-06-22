@@ -39,9 +39,10 @@ def do_deploy(archive_path):
         run("rm {}".format(remote_path))
 
         # Add the three new lines
-        run("rm -r {}/web_static/images/*".format(releases_path))
-        run("rm -r {}/web_static/styles/*".format(releases_path))
-        run("mv {}/web_static/* {}".format(releases_path, releases_path))
+        run("rm -r {}/web_static/images/*".format(releases_path.rstrip('/')))
+        run("rm -r {}/web_static/styles/*".format(releases_path.rstrip('/')))
+        run("mv {}/web_static/* {}".format(releases_path.rstrip('/'), releases_path))
+
 
         run("rm -rf {}web_static".format(releases_path))
         run("rm -rf /data/web_static/current")
