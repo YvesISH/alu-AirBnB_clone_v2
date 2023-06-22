@@ -22,9 +22,6 @@ def do_deploy(archive_path):
         run("rm /tmp/{}".format(file_name))
         run("mv {}/web_static/* {}".format(path_name, path_name))
 
-        run("rm -r {}/web_static/images".format(releases_path.rstrip('/')))
-        run("rm -r {}/web_static/styles".format(releases_path.rstrip('/')))
-        run("mv {}/web_static/* {}/".format(releases_path.rstrip('/'), releases_path.rstrip('/')))
 
 
         run("rm -rf {}/web_static".format(path_name))
