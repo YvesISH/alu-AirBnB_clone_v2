@@ -1,5 +1,9 @@
 #!/usr/bin/python3
-"""A Flask webApp that listens on 0.0.0.0"""
+"""Starts a Flask web application.
+That listens on 0.0.0.0, port 5000.
+Routes:
+    /: Displays 'Hello HBNB!'
+"""
 from flask import Flask
 
 app = Flask(__name__)
